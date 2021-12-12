@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from "react";
 //import firebase app and analytics
+// import firebase from "firebase/app";
+import firebase from "./firebaseauth";
+require('firebase/database');
 
 const App = () => {
   const [lat, setLat] = useState(null);
   const [lng, setLng] = useState(null);
   const [status, setStatus] = useState(null);
+  //create a usestate for name
+  const [name, setName] = useState();
   //   const [status, setStatus] = useState([]);
 
   const [link, setLink] = useState(null);
@@ -23,6 +28,32 @@ const App = () => {
           setLink(
             `https://www.google.com/maps/embed/v1/place?key=AIzaSyAQCY4YwtRmH9fFo77HXc4YA-4jANEsMGE&q=${lat},${lng}`
           );
+          // generate timestamp
+          const timestamp = new Date().getTime();
+            console.log(timestamp);
+          // add data in the firebase
+          const data={
+            Latitude: lat,
+            Longitude: lng,
+            Timestamp: timestamp,
+            Link: link,
+          };
+          const locdata = firebase
+            .database()
+            .ref(`buses/${name}/${timestamp}/`);
+          locdata.set(data, (error) => {
+            if (error) {
+              alert("Sorry Please Try again once more !!! ." + error);
+            } else {
+              // setLoading("DATA SUBMITTED");
+            }
+          });
+          // firebase.database().ref("buses/"+name+"/"+timestamp+"/").set({
+          //   latitude: lat,
+          //   longitude: lng,
+          //   timestamp: timestamp,
+          //   link: link
+          // });
         },
         () => {
           setStatus("Unable to retrieve your location");
@@ -68,8 +99,15 @@ const App = () => {
       </div>
     ) : null;
 
+    const setname = (e) => {
+      setName(e.target.value);
+    };
+
   return (
     <div className="App">
+      {/* create a input field */}
+      <input type="text" placeholder="Username" value={name} onChange={setname} name="name"/>
+      <br />
       <button onClick={getLocation}>START</button>
       {/* <button>START</button> */}
       <h1>Coordinates</h1>
