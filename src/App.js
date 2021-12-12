@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+//import firebase app and analytics
 
 const App = () => {
   const [lat, setLat] = useState(null);
