@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+// const geolib = require('geolib');
+// import { getDistanc } from 'geolib';
 //import firebase app and analytics
 // import firebase from "firebase/app";
 
@@ -22,7 +24,9 @@ const App = () => {
       setStatus("Geolocation is not supported by your browser");
     } else {
       setStatus("Locating...");
+      var i=1;
       navigator.geolocation.watchPosition(
+        
         (position) => {
           setStatus(null);
           setLat(position.coords.latitude);
@@ -34,20 +38,25 @@ const App = () => {
           const timestamp = new Date().getTime();
             console.log(timestamp);
           // add data in the firebase
-          const data={
-            Latitude: lat,
-            Longitude: lng,
-            Timestamp: timestamp,
-            Link: link,
-          };
-          const locdata = firebase.database().ref(`buses/${name}/${timestamp}/`);
-          locdata.set(data, (error) => {
-            if (error) {
-              alert("Sorry Please Try again once more !!! ." + error);
-            } else {
-              // setLoading("DATA SUBMITTED");
-            }
-          });
+          
+          
+          if(position.coords.latitude!=null && position.coords.longitude!=null){
+            const data={
+              Latitude: position.coords.latitude,
+              Longitude: position.coords.longitude,
+              Timestamp: timestamp,
+              Link: link,
+            };
+            const locdata = firebase.database().ref(`buses/${name}/${i}/`);
+            locdata.set(data, (error) => {
+              if (error) {
+                alert("Sorry Please Try again once more !!! ." + error);
+              } else {
+                // setLoading("DATA SUBMITTED");
+              }
+            });
+            i++;
+          }
           // firebase.database().ref("buses/"+name+"/"+timestamp+"/").set({
           //   latitude: lat,
           //   longitude: lng,
