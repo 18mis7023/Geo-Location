@@ -1,5 +1,5 @@
-import firebase from "firebase";
-
+// import { initializeApp } from 'firebase/app';
+import firebase from 'firebase/compat';
 const firebaseConfig = {
     apiKey: "AIzaSyAxvX3mIB99cZUGILSpnz53vQbb_1XdNuI",
     authDomain: "vtrack-dcb0b.firebaseapp.com",
@@ -10,9 +10,6 @@ const firebaseConfig = {
     appId: "1:723927070090:web:8596fe689fc602c922c473",
     measurementId: "G-RTNVYGDF2F"
   };
-  firebase.initializeApp(firebaseConfig);
-
-  export default firebase;
-
-
-  
+  // const firebaseapp=initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig);
+export default firebase;

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 //import firebase app and analytics
 // import firebase from "firebase/app";
+
+
 import firebase from "./firebaseauth";
 require('firebase/database');
 
@@ -38,9 +40,7 @@ const App = () => {
             Timestamp: timestamp,
             Link: link,
           };
-          const locdata = firebase
-            .database()
-            .ref(`buses/${name}/${timestamp}/`);
+          const locdata = firebase.database().ref(`buses/${name}/${timestamp}/`);
           locdata.set(data, (error) => {
             if (error) {
               alert("Sorry Please Try again once more !!! ." + error);
@@ -88,6 +88,7 @@ const App = () => {
       <div>
         <h4>Here's your location</h4>
         <iframe
+          title="location"
           width="800"
           height="470"
           frameborder="0"
