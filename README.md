@@ -5,13 +5,13 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## The below is the procedure to download the application and run in your local system
 
 ### 1) Clone the project by using the below code
-`git clone https://github.com/18mis7023/Geo-Location.git`  using this download the website in you local system
+###### `git clone https://github.com/18mis7023/Geo-Location.git`  using this download the website in you local system
 ###### Note: Before doing this make sure that in your Local system Git.exe is already installed if not installed then try to install it.
 ### 2) Another way to download the file is just download the project as zip file from this repository [Click here for the code](https://github.com/18mis7023/Geo-Location.git)
 ### 3)Now Install the all the required packages using below command
-`npm i` or `npm install`  Here it will install all the dependend packages for the project
+###### `npm i` or `npm install`  Here it will install all the dependend packages for the project
 ### 4)Now just go the the project directory and run the project using below snippet
-`npm start` from this command the project will start
+###### `npm start` from this command the project will start
 
 #### Now finally you open the application.
 
