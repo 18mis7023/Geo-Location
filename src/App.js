@@ -19,7 +19,10 @@ const App = () => {
   const [link, setLink] = useState(null);
   // const [link, setLink] = useState([]);
 
-  const getLocation = () => {
+  useEffect(() => { 
+    
+  } , []);
+  const getLocation = async () => {
     if (!navigator.geolocation) {
       setStatus("Geolocation is not supported by your browser");
     } else {
@@ -50,7 +53,7 @@ const App = () => {
             const locdata = firebase.database().ref(`buses/${name}/${i}/`);
             locdata.set(data, (error) => {
               if (error) {
-                alert("Sorry Please Try again once more !!! ." + error);
+                // alert("Sorry Please Try again once more !!! ." + error);
               } else {
                 // setLoading("DATA SUBMITTED");
               }
